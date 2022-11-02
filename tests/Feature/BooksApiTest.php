@@ -28,14 +28,13 @@ class BooksApiTest extends TestCase
 
         // $this->get(route('books.index'))->dump();
         // ? Con lo de arriba también podemos visualizar el listado, es importante usar nombres de rutas como siempre
-        $response = $this->getJson(route('books.index')); // Enviamos header Accept->application/json 
-
-        // ? Podemos verificar cada libro creado
-        $response->assertJsonFragment([
+        $this->getJson(route('books.index')) // Enviamos header Accept->application/json 
+            ->assertJsonFragment([
             'title' => $books[0]->title
-        ])->assertJsonFragment([
-            'title' => $books[1]->title
-        ]);
+            ])->assertJsonFragment([
+                'title' => $books[1]->title
+            ]);
+        // ? Podemos verificar cada libro creado con assertJsonFragment
 
 
     }
@@ -46,9 +45,7 @@ class BooksApiTest extends TestCase
 
         // ? Probando ruta show
         // dd(route('books.show', $book));
-        $response = $this->getJson(route('books.show', $book));
-
-        $response->assertJsonFragment([
+        $this->getJson(route('books.show', $book))->assertJsonFragment([
             'title' => $book->title
         ]);
     }
