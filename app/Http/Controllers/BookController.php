@@ -79,6 +79,10 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        return 'delete';
+        $book->delete();
+
+        // ? Podríamos retornar arreglo vacío o mejor lo que está más abajo
+        // return [];
+        return response()->noContent(); // Returna un status code (puede ser 204, 404)
     }
 }
