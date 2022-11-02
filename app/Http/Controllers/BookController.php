@@ -15,6 +15,9 @@ class BookController extends Controller
     public function index()
     {
         return Book::all();
+
+        // ? Por lo general debemos usar paginate() para evitar una carga lenta de la api
+        // return Book::paginate();
     }
 
     /**
@@ -36,7 +39,10 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        //
+        return $book;
+
+        // ? Sin el route binding tocaría:
+        // return Book::find($book);
     }
 
     /**
