@@ -41,4 +41,23 @@ class BooksApiTest extends TestCase
             'title' => $book->title
         ]);
     }
+
+    /** @test */
+    function can_create_books(){
+        // ? Debemos crear un test de regresión para probar la validación
+        $this->postJson(route('books.store'), [])
+            ->assertJsonValidationErrorFor('title');
+
+        // Envíamos los datos
+        $this->postJson(route('books.store'), [
+            'title' => 'My new book'
+        ])->assertJsonFragment([
+            'title' => 'My new book'
+        ]);
+
+        // Podemos luego revisar en la base de datos
+        $this->assertDatabaseHas('books', [
+            'title' => 'My new book'
+        ]);
+    }
 }
