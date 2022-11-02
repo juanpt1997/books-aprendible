@@ -10,6 +10,17 @@ class BooksApiTest extends TestCase
 {
     use RefreshDatabase;
 
+    // ? Temporalmente pongo delete de primero mientras encuentro la manera de que refresh database funcione correctamente
+    /** @test */
+    function can_delete_books(){
+        $book = Book::factory()->create();
+
+        $this->deleteJson(route('books.destroy', $book))
+            ->assertNoContent();
+
+        $this->assertDatabaseCount('books', 0);
+    }
+
     // ?  Importante notación test para que funcione, si no, tocaría llamarlo test_can_get_all_books
     /** @test */
     function can_get_all_books(){
