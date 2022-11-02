@@ -4,11 +4,12 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\Book;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+// use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class BooksApiTest extends TestCase
 {
-    use RefreshDatabase;
+    use DatabaseMigrations;
 
     // ?  Importante notación test para que funcione, si no, tocaría llamarlo test_can_get_all_books
     /** @test */
